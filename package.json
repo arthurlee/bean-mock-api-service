@@ -1,0 +1,25 @@
+{
+  "name": "bean-mock-api-service",
+  "version": "0.0.1",
+  "description": "Bean mock Restful API service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arthurlee/bean-mock-api-service.git"
+  },
+  "keywords": [
+    "mock",
+    "API",
+    "restful",
+    "service"
+  ],
+  "author": "Arthur",
+  "license": "GPL-2.0-only",
+  "bugs": {
+    "url": "https://github.com/arthurlee/bean-mock-api-service/issues"
+  },
+  "homepage": "https://github.com/arthurlee/bean-mock-api-service#readme"
+}
