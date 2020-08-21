@@ -1,5 +1,5 @@
 # bean-mock-api-service
-Mock API service
+Mock restful API service.
 
 
 # Getting Start
