@@ -73,7 +73,7 @@ app.use((req, res) => {
 })
 
 // start app
-let port = 1492;
+let port = 1492
 
 if (argv.length > 1) {
 	port = argv[1]

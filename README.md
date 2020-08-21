@@ -2,7 +2,7 @@
 Mock API service
 
 
-# Quick Start
+# Getting Start
 
 ## install
 ```bash
@@ -11,8 +11,11 @@ npm install
 
 ## start service
 ```bash
-node index.js
+node index.js [mock_files_path [listen_port]]
 ```
+
+- mock_files_path: default is files in the current directory
+- listen_port: default is 1492
 
 ## test API
 
