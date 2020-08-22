@@ -16,8 +16,8 @@
     "restful",
     "service"
   ],
-  "author": "Arthur",
-  "license": "GPL-2.0-only",
+  "author": "Arthur Lee <boyal2008@gmail.com>",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/arthurlee/bean-mock-api-service/issues"
   },
