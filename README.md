@@ -45,4 +45,5 @@ POST http://127.0.0.1:1492/api/user/create   => files\_api_user_create_post.json
 
 ## Additional pseudo mechanism
 GET http://127.0.0.1:1492/api/user?pseudo=1   => files\_api_user_get_1.json
+
 POST http://127.0.0.1:1492/api/course?pseudo=2   => files\_api_course_post_2.json
