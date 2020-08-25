@@ -6,7 +6,7 @@
 //
 
 const _ = require('lodash')
-const fs = require('fs')
+const fsPromises = require('fs').promises
 
 
 // mock api data root file path
@@ -26,36 +26,31 @@ console.log(`rootFilesPath set to ${rootFilesPath}`)
 
 // APP
 
-const express = require('express')
-const bodyParser = require('body-parser')
-
-const app = express()
+const Koa = require('koa')
+const app = new Koa()
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
-
 // parse application/json
-app.use(bodyParser.json())
 
 // parameters merge
-app.use((req, res, next) => {
+app.use(async (ctx, next) => {
 	console.log('------------------------- request -------------------')
-	console.log(`${req.method} ${req.url}`);
-	console.log('Content Type:', req.headers['content-type'])
+	console.log(`${ctx.method} ${ctx.url}`);
+	console.log('Content Type:', ctx.headers['content-type'])
 
-	console.log('headers', req.headers)
+	console.log('headers', ctx.headers)
 
-	req.params = _.merge(req.query, req.body)
-	console.log('params', req.params)
+	ctx.params = _.merge(ctx.query, ctx.body)
+	console.log('params', ctx.params)
 
-	req.jsonFile = `${rootFilesPath}/${_.replace(req._parsedUrl.pathname, /\//g, '_')}_${req.method.toLowerCase()}`
-	if (req.params.pseudo) {
-		req.jsonFile += `_${req.params.pseudo}`
+	ctx.jsonFile = `${rootFilesPath}/${_.replace(ctx.path, /\//g, '_')}_${ctx.method.toLowerCase()}`
+	if (ctx.params.pseudo) {
+		ctx.jsonFile += `_${ctx.params.pseudo}`
 	}
-	req.jsonFile += '.json';
-	console.log(req.jsonFile)
+	ctx.jsonFile += '.json';
+	console.log(ctx.jsonFile)
 
-	next()
+	await next()
 })
 
 //
@@ -68,8 +63,8 @@ app.use((req, res, next) => {
 //	curl command line：
 //		curl -d "a=b" "http://127.0.0.1:1492/api/getList"
 //
-app.use((req, res) => {
-	sendJsonFile(res, req.jsonFile)
+app.use(async ctx => {
+	await sendJsonFile(ctx, ctx.jsonFile)
 })
 
 // start app
@@ -80,29 +75,20 @@ if (argv.length > 1) {
 	console.log(`set port to ${port}`)
 }
 
-app.listen(port, () => {
-	console.log(`pseudo service listening at http://127.0.0.1:${port}`)
-})
+app.listen(port)
+console.log(`pseudo service listening at http://127.0.0.1:${port}`)
 
 // --------------------- supported functions -----------------------------
 
-function sendJson(res, obj) {
+function sendJson(ctx, obj) {
 	console.log('------------------------- response -------------------')
 	console.log(JSON.stringify(obj, null, 2))	// well-formatted
 	console.log('------------------------------------------------------')
 
-	res.writeHead(200, { 'Content-Type': 'application/json' })
-	res.end(JSON.stringify(obj))	// compact
+	ctx.body = obj
 }
 
-function sendJsonFile(res, filename) {
-	fs.readFile(filename, (err, data) => {
-		if (err) {
-			sendJson(res, {code: '-1', message: err.message})
-			return
-		}
-
-		res.writeHead(200, { 'Content-Type': 'application/json' })
-		res.end(data)
-	})
+async function sendJsonFile(ctx, filename) {
+	const data = await fsPromises.readFile(filename)
+	sendJson(ctx, JSON.parse(data))
 }

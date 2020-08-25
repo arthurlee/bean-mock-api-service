@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/arthurlee/bean-mock-api-service#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "koa": "^2.13.0",
     "lodash": "^4.17.20"
   }
 }
