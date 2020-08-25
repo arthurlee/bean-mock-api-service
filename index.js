@@ -7,7 +7,7 @@
 
 const _ = require('lodash')
 const fsPromises = require('fs').promises
-
+const koaBody = require('koa-body')
 
 // mock api data root file path
 let rootFilesPath = 'files'
@@ -29,8 +29,7 @@ console.log(`rootFilesPath set to ${rootFilesPath}`)
 const Koa = require('koa')
 const app = new Koa()
 
-// parse application/x-www-form-urlencoded
-// parse application/json
+app.use(koaBody())
 
 // parameters merge
 app.use(async (ctx, next) => {
@@ -40,7 +39,7 @@ app.use(async (ctx, next) => {
 
 	console.log('headers', ctx.headers)
 
-	ctx.params = _.merge(ctx.query, ctx.body)
+	ctx.params = _.merge(ctx.query, ctx.request.body)
 	console.log('params', ctx.params)
 
 	ctx.jsonFile = `${rootFilesPath}/${_.replace(ctx.path, /\//g, '_')}_${ctx.method.toLowerCase()}`

@@ -24,6 +24,7 @@
   "homepage": "https://github.com/arthurlee/bean-mock-api-service#readme",
   "dependencies": {
     "koa": "^2.13.0",
+    "koa-body": "^4.2.0",
     "lodash": "^4.17.20"
   }
 }
