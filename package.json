@@ -1,6 +1,6 @@
 {
   "name": "bean-mock-api-service",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Bean mock Restful API service",
   "main": "index.js",
   "scripts": {
