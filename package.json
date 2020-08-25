@@ -26,8 +26,5 @@
     "koa": "^2.13.0",
     "koa-body": "^4.2.0",
     "lodash": "^4.17.20"
-  },
-  "publishConfig": { 
-    "registry": "https://npm.pkg.github.com/" 
   }
 }
