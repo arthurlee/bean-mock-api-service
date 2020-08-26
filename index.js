@@ -5,7 +5,7 @@
 //	Arthur Lee, 2020-08-21
 //
 
-const _ = require('lodash')
+// const _ = require('lodash')
 const fsPromises = require('fs').promises
 const koaBody = require('koa-body')
 
@@ -39,10 +39,11 @@ app.use(async (ctx, next) => {
 
 	console.log('headers', ctx.headers)
 
-	ctx.params = _.merge(ctx.query, ctx.request.body)
+	// ctx.params = _.merge(ctx.query, ctx.request.body)
+	ctx.params = Object.assign({}, ctx.query, ctx.request.body)
 	console.log('params', ctx.params)
 
-	ctx.jsonFile = `${rootFilesPath}/${_.replace(ctx.path, /\//g, '_')}_${ctx.method.toLowerCase()}`
+	ctx.jsonFile = `${rootFilesPath}/${ctx.path.replace(/\//g, '_')}_${ctx.method.toLowerCase()}`
 	if (ctx.params.pseudo) {
 		ctx.jsonFile += `_${ctx.params.pseudo}`
 	}
