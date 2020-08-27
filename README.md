@@ -49,6 +49,11 @@ GET http://127.0.0.1:1492/api/user?pseudo=1   => files\_api_user_get_1.json
 POST http://127.0.0.1:1492/api/course?pseudo=2   => files\_api_course_post_2.json
 
 
+# More
+- npx eslint index.js
+
+
+
 # References
 - [Node.js](https://nodejs.org)
 - [ESLint](https://eslint.org)

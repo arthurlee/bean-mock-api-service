@@ -5,8 +5,9 @@
 //	Arthur Lee, 2020-08-21
 //
 
-// const _ = require('lodash')
-const fsPromises = require('fs').promises
+const fs = require('fs')
+const fsPromises = fs.promises
+const process = require('process')
 const koaBody = require('koa-body')
 
 // mock api data root file path
@@ -18,7 +19,7 @@ if (argv.length > 0) {
 		rootFilesPath = argv[0]
 	} else {
 		console.error(`path ${argv[0]} not exists`)
-		return
+		process.exit(1)
 	}
 }
 
@@ -27,6 +28,7 @@ console.log(`rootFilesPath set to ${rootFilesPath}`)
 // APP
 
 const Koa = require('koa')
+const { exit } = require('process')
 const app = new Koa()
 
 app.use(koaBody())
