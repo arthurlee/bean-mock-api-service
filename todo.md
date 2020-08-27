@@ -1,0 +1,9 @@
+- ESLint
+- Plugin structure
+- Sign check mechanism
+- Electron integration
+- Team support
+- xml support
+- Cloud service
+- OAuth 2.0 support
+- Data set
