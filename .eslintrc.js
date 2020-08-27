@@ -11,5 +11,8 @@ module.exports = {
     ecmaVersion: 12
   },
   rules: {
+    "indent": ["error", "tab"],
+    "no-tabs": 0,
+    "space-before-function-paren": 0
   }
 }

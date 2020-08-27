@@ -28,7 +28,6 @@ console.log(`rootFilesPath set to ${rootFilesPath}`)
 // APP
 
 const Koa = require('koa')
-const { exit } = require('process')
 const app = new Koa()
 
 app.use(koaBody())
@@ -36,7 +35,7 @@ app.use(koaBody())
 // parameters merge
 app.use(async (ctx, next) => {
 	console.log('------------------------- request -------------------')
-	console.log(`${ctx.method} ${ctx.url}`);
+	console.log(`${ctx.method} ${ctx.url}`)
 	console.log('Content Type:', ctx.headers['content-type'])
 
 	console.log('headers', ctx.headers)
@@ -49,7 +48,7 @@ app.use(async (ctx, next) => {
 	if (ctx.params.pseudo) {
 		ctx.jsonFile += `_${ctx.params.pseudo}`
 	}
-	ctx.jsonFile += '.json';
+	ctx.jsonFile += '.json'
 	console.log(ctx.jsonFile)
 
 	await next()
