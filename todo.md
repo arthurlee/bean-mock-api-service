@@ -1,4 +1,4 @@
-- ESLint
+- ESLint - OK
 - Plugin structure
 - Sign check mechanism
 - Electron integration
@@ -8,3 +8,4 @@
 - OAuth 2.0 support
 - Data set
 - Change to TypeScript
+- json editor and verify
