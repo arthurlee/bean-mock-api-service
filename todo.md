@@ -10,3 +10,5 @@
 - Change to TypeScript
 - json editor and verify
 - API document generator
+- logger
+- call history
